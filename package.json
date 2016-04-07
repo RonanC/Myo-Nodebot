@@ -1,0 +1,25 @@
+{
+  "name": "nodebot",
+  "version": "1.0.0",
+  "description": "Arduino robot, programmed in JS with Johnny-Five, controlled via keyboard, myo and cortana.",
+  "main": "nodebot.js",
+  "dependencies": {
+    "keypress": "^0.2.1",
+    "johnny-five": "^0.9.28",
+    "temporal": "^0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodebot",
+    "cortana",
+    "myo",
+    "johnny-five",
+    "js",
+    "arduino"
+  ],
+  "author": "Ronan Connolly",
+  "license": "ISC"
+}

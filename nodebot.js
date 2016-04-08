@@ -1,6 +1,9 @@
 var five = require("johnny-five");
 var temporal = require("temporal");
 var keypress = require("keypress");
+var myoTools = require('./myoTools.js');
+
+// // JOHNNY-FIVE
 keypress(process.stdin);
 
 var opts = {};
@@ -52,6 +55,9 @@ board.on("ready", function() {
         } else if (key.name == "v") {
             console.log("Voice");
             buzz();
+        } else if (key.name == "m"){
+          console.log("Myo tools:");
+          myoTools.helloWorld();
         }
 
     });

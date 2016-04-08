@@ -13,9 +13,8 @@ Nodebot, controlled with a Myo armband using the Myo JavaScript bindings in Node
 ### Ronan Connolly
 #### G00274374
 
-```
-The branch of technology that deals with the design, construction, operation, and application of robots.
-```
+**Robotics**  
+*The branch of technology that deals with the design, construction, operation, and application of robots.*
 
 ## Introduction
 This project was created as part of my Level 8 Honours degree in Software development in GMIT, Gesture Based UI module during my fourth/final year.
@@ -27,7 +26,7 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 
 [Official Project Brief](project-brief.md).
 
-![nodebot-v1](https://github.com/RonanC/maze-escape/blob/master/images/nodebot-v1.jpg "nodebot-v1")
+![nodebot-v1](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v1.jpg "nodebot-v1")
 
 ### What is a Nodebot?
 Any piece of electronics controlled via JavaScript.  

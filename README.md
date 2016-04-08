@@ -27,12 +27,14 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 
 [Official Project Brief](project-brief.md).
 
+![nodebot-v1](https://github.com/RonanC/maze-escape/blob/master/images/nodebot-v1.jpg "nodebot-v1")
+
 ### What is a Nodebot?
 Any piece of electronics controlled via JavaScript.  
 Be it an Arduino, Intel Edison, BeagleBone or Raspberry Pi.
 
 ### Why JavaScript?
-Well since the introduction of [Johnny-Five](http://johnny-five.io/) by Rick Waldron at [NodeConf](https://www.youtube.com/watch?v=jf-cEB3U2UQ) in 2012, it has enabled all those JavaScript developers to utilize their skills and program electronics.   
+Well since the introduction of [Johnny-Five](http://johnny-five.io/) (J5) by Rick Waldron at [NodeConf](https://www.youtube.com/watch?v=jf-cEB3U2UQ) in 2012, it has enabled all those JavaScript developers to utilize their skills and program electronics.   
 
 Johnny-Five was only possible due to the creation of the [node-serialport](https://github.com/voodootikigod/node-serialport) which provides a simple interface to the low level serial port code necessary to program various chipsets, wireless communications, and many standards.
 
@@ -200,7 +202,25 @@ Myo.on('fist', function () {
 #### cortanaWebService
 
 ## Class presentation
-**video**
+**version videos/spec**
+### NodeBot Version 1:  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-WjKqEVGbKI
+" target="_blank"><img src="http://img.youtube.com/vi/-WjKqEVGbKI/0.jpg" 
+alt="nodebot-v1" width="240" height="180" border="10" /></a>
+- Circuit working
+- Voltage Regulator (6V, this brings the 7.4V down to 6V for the servos)
+- Capacitors (decoupling)
+- Wifi Tethered
+- Continuous Rotation Servos
+- LiPo Battery Pack (7.4V 2 cell)
+- Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
+
+### NodeBot Version 2:  
+TODO: Add YT link for V2
+- Piezo (Makes beep boop noises)
+- Switch (Makes it easy to toggle on/off)
+- Case (Cardboard, keeps everything nice and tidy)
+- Sonar Sensor (To make sure we don't knock into something)
 
 ## Usage Instructions (OSX only)
 - Open the Myo Connect App

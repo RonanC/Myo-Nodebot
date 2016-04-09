@@ -482,8 +482,10 @@ When using the Arduino Nano, the positive cable from the battery accidently touc
 
 When I added a switch I didn't check the circuit properly and the battery ended up being connected to itself, this quickly melted the wires connected to the battery and the switch, I seen the smoke and quickly pulled the cables out, whereafter the plastic on the wires immediately came off the cables.
 
+**Cables melted together**  
 ![issues-cable-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-cable-melt.jpg "issues-cable-melt")
 
+**Switch melted closed**  
 ![issues-switch-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-switch-melt.jpg "issues-switch-melt")
 
 ## Conclusion

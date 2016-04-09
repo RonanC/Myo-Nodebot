@@ -26,7 +26,18 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 
 [Official Project Brief](project-brief.md).
 
+### Personality
+The robot is the love child of Bender and Johnny-Five.
+Hence his name is Bender-Five (obviously).
+![bender-J5](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/bender-J5.png "bender-J5")
+
+### Version 1
 ![nodebot-v1](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v1.jpg "nodebot-v1")
+
+### Version 2
+![nodebot-v2](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2.jpg "nodebot-v2")
+
+![nodebot-v2-internals](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2-internals.jpg "nodebot-v2-internals")
 
 ### What is a Nodebot?
 Any piece of electronics controlled via JavaScript.  
@@ -132,8 +143,29 @@ The third program is a JS cortana app, this registers commands with the computer
 Once I completed this it was ready to be linked in with the robot.
 
 ## Basic solution implemented and working (the code part)
+
+### Board Setup
+```js
+board.on("ready", function() {
+    // servo
+    left_wheel = new five.Servo.Continuous(9);
+    right_wheel = new five.Servo.Continuous(8);
+
+    piezo = new five.Piezo(3);
+
+    keyboardSetup();
+
+    myoSetup();
+});
+```
+
+### Keyboard Setup
 This piece of Johnny-Five code listens for different keypress events:
 ```js
+keyboardSetup = function() {
+    console.log("Control the bot with the Arrow keys, the space bar to stop, B to boogie, V to voice, Q to exit.");
+    buzz();
+
     process.stdin.on("keypress", function(ch, key) {
         if (!key) {
             return;
@@ -164,41 +196,182 @@ This piece of Johnny-Five code listens for different keypress events:
         } else if (key.name == "v") {
             console.log("Voice");
             buzz();
-        } else if (key.name == "m"){
-          console.log("Myo tools:");
-          myoTools.helloWorld();
         }
+    });
 
+    // Configure stdin for the keyboard controller
+    process.stdin.setRawMode(true);
+    process.stdin.resume();
+    process.stdin.setEncoding("utf8");
+};
+```
+
+### Myo Setup
+```js
+myoSetup = function() {
+    // start talks to myo connect
+    Myo.connect('ie.gmit.myoBasics');
+};
+
+// // Init Events
+// once app is connected to myo connect app
+Myo.on('connected', function(data, timestamp) {
+    // console.log('\nConnected:', Myo.myos[0]);
+    console.log('Event: connected:', this.name);
+
+    // Myo.methods.initMyo();
+    myMyo = this;
+    addEvents(myMyo);
+
+    // console.log('\ndata: ' + JSON.stringify(data));
+    // console.log('\ntimestamp: ' + JSON.stringify(timestamp));
+
+    console.log();
+});
+```
+
+### Myo Commands
+Here is the method that all the below events are contained in.
+```js
+// ONLY THIS REGISTERED ARMBAND
+function addEvents(myo) {
+    // events here...
+}
+```
+
+When the arm is synced/unsynced we print some basic data.
+```js
+    // arm_synced
+    myo.on('arm_synced', function() {
+        console.log('Event: arm_synced');
+        console.log('myo.arm:', myo.arm);
+        console.log('myo.direction:', myo.direction);
+        console.log();
+    });
+
+    // arm_unsynced
+    myo.on('arm_unsynced', function() {
+        console.log('Event: arm_unsynced');
+        console.log('myo.arm:', myo.arm);
+        console.log('myo.direction:', myo.direction);
+        console.log();
     });
 ```
 
-Here is some of the Myo Code:
+If we are resting we stop.
 ```js
-Myo.on('fist', function () {
-    console.log('Event: fist');
-    this.vibrate();
-    
-    // hello world
-    // Myo.myos[0].helloWorld();
-    
-});
+    // stop
+    myo.on('rest', function() {
+        console.log('resting');
+        stop();
+    });
+```
+
+When the myo detects a pose it sends the appropriate action to the robot.
+```js
+    // backward
+    Myo.on('fist', function() {
+        console.log('Event: fist');
+        this.vibrate();
+        backward();
+    });
+```
+
+Once the pose is over we stop.
+```js
+    Myo.on('fist_off', function() {
+        console.log('Event: fist_off');
+        stop();
+    });
+```
+
+Other events (self explanatory).
+```js
+  // forward
+    Myo.on('fingers_spread', function() {
+        console.log('Event: fingers_spread');
+        this.vibrate();
+        forward();
+    });
+
+    Myo.on('fingers_spread_off', function() {
+        console.log('Event: fingers_spread_off');
+        stop();
+    });
+
+    // wave in
+    Myo.on('wave_in', function() {
+        console.log('Event: wave_in');
+        this.vibrate();
+        left();
+    });
+
+    Myo.on('wave_in_off', function() {
+        console.log('Event: wave_in_off');
+        stop();
+    });
+
+    // wave out
+    Myo.on('wave_out', function() {
+        console.log('Event: wave_out');
+        this.vibrate();
+        right();
+    });
+
+    Myo.on('wave_out_off', function() {
+        console.log('Event: wave_out_off');
+        stop();
+    });
+
+    // double tap
+    Myo.on('double_tap', function() {
+        console.log('Event: double_tap');
+        this.vibrate();
+        buzz();
+    });
+
+    Myo.on('double_tap_off', function() {
+        console.log('Event: double_tap_off');
+        // console.log();
+    });
+```
+
+Turns off locking, as the Myo will lock once your arm is left hanging.
+```js
+    // // ADMIN
+    var policyType = 'none'; // standard
+    Myo.setLockingPolicy(policyType);
 ```
 
 ## Documentation
 ### Scripts
 #### go-port.sh
+Opens a virtual port via telnet to the Wifi Module:
+```sh
+socat -d pty,nonblock,link=/Users/Ronan/development/misc/ttyV0 tcp:172.20.10.2:8899
+```
 #### go-robot.sh
+Runs the node program on the virtual port. This allows us to send commands serially over wifi.
+```sh
+node ./nodebot.js ~/development/misc/ttyV0
+```
 
 ### Tests
 #### servo-test.js
+Testing out the Johnny-Five Servo and Event Delays (Temporal).
+
+#### myoTools.js
+Used for testing out the various JS Myo function bindings.
 
 ### JS Files
 #### nodebot.js
-#### myoTools.js
+The main program, it contains the Johnny-Five, Keyboard, Delay Events, Myo and Cortana code. It is the hub for all interactions.
 
 ### Cortana
 #### cortanaApp
+<!-- TODO -->
 #### cortanaWebService
+<!-- TODO -->
 
 ## Class presentation
 **version videos/spec**
@@ -215,11 +388,13 @@ alt="nodebot-v1" width="240" height="180" border="10" /></a>
 - Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
 
 ### NodeBot Version 2:  
-TODO: Add YT link for V2
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=VGiIr2vpM2U&nohtml5
+" target="_blank"><img src="http://img.youtube.com/vi/VGiIr2vpM2U&nohtml5/0.jpg" 
+alt="nodebot-v2" width="240" height="180" border="10" /></a>
 - Piezo (Makes beep boop noises)
 - Switch (Makes it easy to toggle on/off)
 - Case (Cardboard, keeps everything nice and tidy)
-- Sonar Sensor (To make sure we don't knock into something)
+- Personality (He has Benders face) 
 
 ## Usage Instructions (OSX only)
 - Open the Myo Connect App
@@ -293,6 +468,25 @@ I think even with the above intentions once you learn Johnny-Five you will quick
 Altough I do find the Arduino starter-kit a pretty good C stepping stone!
 
 I found that it was really quick and easy to setup Johnny-Five projects. If you want to quickly actualize your vision then it's great, but it leaves you with a feeling of "What is actually happening here?".
+
+## Issues
+One of the biggest shift changes between hardware and software is that you're dealing with physical components. 
+
+Instead of downloading a package you have to order it and wait a few days to a few weeks for it to arrive. 
+
+If you break your code you just re-run it. If you short circuit your robot then you might blow a component.
+
+There is a steep learning curve, but once you see smoke, sparks and melted plastic you quickly learn what you need to pay special attention to.
+
+When using the Arduino Nano, the positive cable from the battery accidently touched the board, which caused a puff of smoke. The board seemed to work okay after, however some of the pins stopped working which made it essentially useless. This led to implementing a switch.
+
+![issues-board-sc](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-board-sc.jpg "issues-board-sc")
+
+When I added a switch I didn't check the circuit properly and the battery ended up being connected to itself, this quickly melted the wires connected to the battery and the switch, I seen the smoke and quickly pulled the cables out, whereafter the plastic on the wires immediately came off the cables.
+
+![issues-cable-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-cable-melt.jpg "issues-cable-melt")
+
+![issues-switch-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-switch-melt.jpg "issues-switch-melt")
 
 ## References
 Check the source code of this README.md file, all references are linked to the anchored words.

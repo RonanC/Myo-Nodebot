@@ -1,15 +1,37 @@
 var five = require("johnny-five");
 var temporal = require("temporal");
 var keypress = require("keypress");
-// var myoTools = require('./myoTools.js');
 var Myo = require('myo');
 
-// // public functions
-// module.exports = {
-//     methods: Myo.methods
-// };
 // global: Myo
 // specific: myo
+
+// // JOHNNY-FIVE
+// global stuff
+keypress(process.stdin);
+
+var opts = {};
+opts.port = process.argv[2] || "";
+
+var board = new five.Board(opts);
+
+var left_wheel;
+var right_wheel;
+var piezo;
+
+var myMyo;
+
+board.on("ready", function() {
+    // servo
+    left_wheel = new five.Servo.Continuous(9);
+    right_wheel = new five.Servo.Continuous(8);
+
+    piezo = new five.Piezo(3);
+
+    keyboardSetup();
+
+    myoSetup();
+});
 
 // // VARIABLE definitions
 // Myo.methods.initMyo = initMyo;
@@ -18,15 +40,31 @@ var Myo = require('myo');
 // Myo.methods.testData = testData;
 // Myo.methods.addEvents = addEvents;
 
+// // Init Events
+// once app is connected to myo connect app
+Myo.on('connected', function(data, timestamp) {
+    // console.log('\nConnected:', Myo.myos[0]);
+    console.log('Event: connected:', this.name);
+
+    // Myo.methods.initMyo();
+    myMyo = this;
+    addEvents(myMyo);
+
+    // console.log('\ndata: ' + JSON.stringify(data));
+    // console.log('\ntimestamp: ' + JSON.stringify(timestamp));
+
+    console.log();
+});
+
+Myo.on('disconnected', function() {
+    console.log('Event: disconnected:', this.name);
+    console.log();
+});
+
 // // FUNCTION expressions
 Myo.onError = function() {
     console.log("Woah, couldn't connect to Myo Connect");
 };
-
-// // EXECUTABLE CODE
-// start talks to myo connect
-Myo.connect('ie.gmit.myoBasics');
-var myMyo;
 
 // ONLY THIS REGISTERED ARMBAND
 function addEvents(myo) {
@@ -99,7 +137,7 @@ function addEvents(myo) {
 
     Myo.on('wave_out_off', function() {
         console.log('Event: wave_out_off');
-       stop();
+        stop();
     });
 
     // double tap
@@ -120,48 +158,8 @@ function addEvents(myo) {
     Myo.setLockingPolicy(policyType);
 }
 
-// // Init Events
-// once app is connected to myo connect app
-Myo.on('connected', function(data, timestamp) {
-    // console.log('\nConnected:', Myo.myos[0]);
-    console.log('Event: connected:', this.name);
 
-    // Myo.methods.initMyo();
-    myMyo = this;
-    addEvents(myMyo);
-
-    // console.log('\ndata: ' + JSON.stringify(data));
-    // console.log('\ntimestamp: ' + JSON.stringify(timestamp));
-
-    console.log();
-});
-
-Myo.on('disconnected', function() {
-    console.log('Event: disconnected:', this.name);
-    console.log();
-});
-
-
-
-// // JOHNNY-FIVE
-keypress(process.stdin);
-
-var opts = {};
-opts.port = process.argv[2] || "";
-
-var board = new five.Board(opts);
-
-var left_wheel;
-var right_wheel;
-var piezo;
-
-board.on("ready", function() {
-    // servo
-    left_wheel = new five.Servo.Continuous(9);
-    right_wheel = new five.Servo.Continuous(8);
-
-    piezo = new five.Piezo(3);
-
+keyboardSetup = function() {
     console.log("Control the bot with the Arrow keys, the space bar to stop, B to boogie, V to voice, Q to exit.");
     buzz();
 
@@ -195,25 +193,19 @@ board.on("ready", function() {
         } else if (key.name == "v") {
             console.log("Voice");
             buzz();
-        } else if (key.name == "i") {
-            console.log("init Myo tools:");
-            myoTools.methods.initMyo();
-        } else if (key.name == "m") {
-            console.log("Myo tools:");
-            // if defined:
-            myoTools.methods.testEvents();
-            myoTools.methods.testData();
-            myoTools.methods.addEvents();
         }
-
     });
 
     // Configure stdin for the keyboard controller
     process.stdin.setRawMode(true);
     process.stdin.resume();
     process.stdin.setEncoding("utf8");
+};
 
-});
+myoSetup = function() {
+    // start talks to myo connect
+    Myo.connect('ie.gmit.myoBasics');
+};
 
 left = function() {
     left_wheel.cw();

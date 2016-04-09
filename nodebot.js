@@ -38,8 +38,8 @@ board.on("ready", function() {
 });
 
 keyboardSetup = function() {
-    console.log("Control the bot with the Arrow keys, the space bar to stop, B to boogie, V to voice, Q to exit.");
-    buzz();
+    console.log("Control the bot with the Arrow keys, the space bar to stop, D to dance, S to speak, Q to exit.");
+    speak();
 
     process.stdin.on("keypress", function(ch, key) {
         if (!key) {
@@ -51,26 +51,21 @@ keyboardSetup = function() {
             console.log("Quitting");
             process.exit();
         } else if (key.name == "up") {
-            console.log("Forward");
             forward();
         } else if (key.name == "down") {
-            console.log("Backward");
             backward();
         } else if (key.name == "left") {
-            console.log("Left");
             left();
         } else if (key.name == "right") {
-            console.log("Right");
             right();
         } else if (key.name == "space") {
-            console.log("Stopping");
             stop();
-        } else if (key.name == "b") {
-            console.log("Boogie");
-            boogie();
-        } else if (key.name == "v") {
-            console.log("Voice");
-            buzz();
+        } else if (key.name == "d") {
+            dance();
+        } else if (key.name == "s") {
+            speak();
+        } else {
+            console.log("Command undefined.");
         }
     });
 
@@ -89,28 +84,36 @@ cortanaSetup = function() {
         console.log("Received command: " + cmd);
 
         if (cmd == "forward") {
-            console.log("Forward");
-            forward();
+            command(forward, 1500);
         } else if (cmd == "backward") {
-            console.log("Backward");
-            backward();
+            command(backward, 1500);
         } else if (cmd == "left") {
-            console.log("Left");
-            left();
+            command(left, 1500);
         } else if (cmd == "right") {
-            console.log("Right");
-            right();
+            command(right, 1500);
         } else if (cmd == "stop") {
-            console.log("Stopping");
-            stop();
+            command(stop, 1500);
         } else if (cmd == "dance") {
-            console.log("Dancing");
-            boogie();
+            command(dance, 1500);
         } else if (cmd == "speak") {
-            console.log("Speaking");
-            buzz();
+            command(speak, 1500);
         }
     });
+};
+
+command = function(command, dur) {
+    temporal.queue([{
+        delay: 100,
+        task: function() {
+            speak();
+            command();
+        }
+    }, { // stop
+        delay: dur,
+        task: function() {
+            stop();
+        }
+    }]);
 };
 
 myoSetup = function() {
@@ -120,37 +123,43 @@ myoSetup = function() {
 
 // // Robot Functions
 left = function() {
+    console.log("Left");
     left_wheel.cw();
     right_wheel.cw();
 };
 
 right = function() {
+    console.log("Right");
     left_wheel.ccw();
     right_wheel.ccw();
 };
 
 forward = function() {
+    console.log("Forwards");
     left_wheel.ccw();
     right_wheel.cw();
 };
 
 backward = function() {
+    console.log("Backwards");
     left_wheel.cw();
     right_wheel.ccw();
 };
 
 stop = function() {
+    console.log("Stopping");
     left_wheel.stop();
     right_wheel.stop();
     // left_wheel.to(90);
     // right_wheel.to(90);
 };
 
-boogie = function() {
+dance = function() {
+    console.log("Dancing");
     temporal.queue([{
         delay: 500,
         task: function() {
-            buzz();
+            speak();
             left();
         }
     }, { // shuffle
@@ -171,7 +180,7 @@ boogie = function() {
     }, {
         delay: 500,
         task: function() {
-            buzz();
+            speak();
             forward();
         }
     }, {
@@ -193,12 +202,12 @@ boogie = function() {
         delay: 500,
         task: function() {
             stop();
-            buzz();
+            speak();
         }
     }]);
 };
 
-buzz = function() {
+speak = function() {
     piezo.play({
         // song is composed by an array of pairs of notes and beats
         // The first argument is the note (null means "no note")
@@ -322,7 +331,7 @@ function addEvents(myo) {
     Myo.on('double_tap', function() {
         console.log('Event: double_tap');
         this.vibrate();
-        buzz();
+        speak();
     });
 
     Myo.on('double_tap_off', function() {

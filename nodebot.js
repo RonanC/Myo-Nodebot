@@ -1,7 +1,147 @@
 var five = require("johnny-five");
 var temporal = require("temporal");
 var keypress = require("keypress");
-var myoTools = require('./myoTools.js');
+// var myoTools = require('./myoTools.js');
+var Myo = require('myo');
+
+// // public functions
+// module.exports = {
+//     methods: Myo.methods
+// };
+// global: Myo
+// specific: myo
+
+// // VARIABLE definitions
+// Myo.methods.initMyo = initMyo;
+// Myo.methods.helloWorld = helloWorld;
+// Myo.methods.testEvents = testEvents;
+// Myo.methods.testData = testData;
+// Myo.methods.addEvents = addEvents;
+
+// // FUNCTION expressions
+Myo.onError = function() {
+    console.log("Woah, couldn't connect to Myo Connect");
+};
+
+// // EXECUTABLE CODE
+// start talks to myo connect
+Myo.connect('ie.gmit.myoBasics');
+var myMyo;
+
+// ONLY THIS REGISTERED ARMBAND
+function addEvents(myo) {
+    // arm_synced
+    myo.on('arm_synced', function() {
+        console.log('Event: arm_synced');
+        console.log('myo.arm:', myo.arm);
+        console.log('myo.direction:', myo.direction);
+        console.log();
+    });
+
+    // arm_unsynced
+    myo.on('arm_unsynced', function() {
+        console.log('Event: arm_unsynced');
+        console.log('myo.arm:', myo.arm);
+        console.log('myo.direction:', myo.direction);
+        console.log();
+    });
+
+
+    // stop
+    myo.on('rest', function() {
+        console.log('resting');
+        stop();
+    });
+
+    // backward
+    Myo.on('fist', function() {
+        console.log('Event: fist');
+        this.vibrate();
+        backward();
+    });
+
+    Myo.on('fist_off', function() {
+        console.log('Event: fist_off');
+        stop();
+    });
+
+
+    // forward
+    Myo.on('fingers_spread', function() {
+        console.log('Event: fingers_spread');
+        this.vibrate();
+        forward();
+    });
+
+    Myo.on('fingers_spread_off', function() {
+        console.log('Event: fingers_spread_off');
+        stop();
+    });
+
+    // wave in
+    Myo.on('wave_in', function() {
+        console.log('Event: wave_in');
+        this.vibrate();
+        left();
+    });
+
+    Myo.on('wave_in_off', function() {
+        console.log('Event: wave_in_off');
+        stop();
+    });
+
+    // wave out
+    Myo.on('wave_out', function() {
+        console.log('Event: wave_out');
+        this.vibrate();
+        right();
+    });
+
+    Myo.on('wave_out_off', function() {
+        console.log('Event: wave_out_off');
+       stop();
+    });
+
+    // double tap
+    Myo.on('double_tap', function() {
+        console.log('Event: double_tap');
+        this.vibrate();
+        buzz();
+    });
+
+    Myo.on('double_tap_off', function() {
+        console.log('Event: double_tap_off');
+        // console.log();
+    });
+
+
+    // // ADMIN
+    var policyType = 'none'; // standard
+    Myo.setLockingPolicy(policyType);
+}
+
+// // Init Events
+// once app is connected to myo connect app
+Myo.on('connected', function(data, timestamp) {
+    // console.log('\nConnected:', Myo.myos[0]);
+    console.log('Event: connected:', this.name);
+
+    // Myo.methods.initMyo();
+    myMyo = this;
+    addEvents(myMyo);
+
+    // console.log('\ndata: ' + JSON.stringify(data));
+    // console.log('\ntimestamp: ' + JSON.stringify(timestamp));
+
+    console.log();
+});
+
+Myo.on('disconnected', function() {
+    console.log('Event: disconnected:', this.name);
+    console.log();
+});
+
+
 
 // // JOHNNY-FIVE
 keypress(process.stdin);
@@ -55,9 +195,15 @@ board.on("ready", function() {
         } else if (key.name == "v") {
             console.log("Voice");
             buzz();
-        } else if (key.name == "m"){
-          console.log("Myo tools:");
-          myoTools.helloWorld();
+        } else if (key.name == "i") {
+            console.log("init Myo tools:");
+            myoTools.methods.initMyo();
+        } else if (key.name == "m") {
+            console.log("Myo tools:");
+            // if defined:
+            myoTools.methods.testEvents();
+            myoTools.methods.testData();
+            myoTools.methods.addEvents();
         }
 
     });

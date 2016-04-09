@@ -223,6 +223,9 @@ TODO: Add YT link for V2
 
 ## Usage Instructions (OSX only)
 - Open the Myo Connect App
+- Connect computer to mobile hotspot
+- Turn Robot on
+- Make sure 2 devices are connected to hotspot
 - Run the go-port.sh bash script
 - Run the go-robot.sh bash script
 

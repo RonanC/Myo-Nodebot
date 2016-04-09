@@ -1,18 +1,18 @@
 var Myo = require('myo');
 
 // // public functions
-module.exports = {
-    helloWorld: helloWorld
-};
+// module.exports = {
+//     methods: Myo.methods
+// };
 // global: Myo
 // specific: myo
 
 // // VARIABLE definitions
-Myo.methods.helloWorld = helloWorld;
-Myo.methods.testEvents = testEvents;
-Myo.methods.testData = testData;
-Myo.methods.initMyo = initMyo;
-Myo.methods.addEvents = addEvents;
+// Myo.methods.initMyo = initMyo;
+// Myo.methods.helloWorld = helloWorld;
+// Myo.methods.testEvents = testEvents;
+// Myo.methods.testData = testData;
+// Myo.methods.addEvents = addEvents;
 
 // // FUNCTION expressions
 Myo.onError = function () {
@@ -26,43 +26,43 @@ var myMyo;
 // Myo.myos[0].helloWorld();
 
 // // FUNCTION declarations
-function helloWorld() {
-    console.log('Hello ' + this.name);
-    console.log();
-}
+// function helloWorld() {
+//     console.log('Hello ' + this.name);
+//     console.log();
+// }
 
-function testEvents() {    
-    // show battery level
-    // myMyo.requestBatteryLevel();
+// function testEvents() {    
+//     // show battery level
+//     myMyo.requestBatteryLevel();
     
-    // stream emg
-    // myMyo.streamEMG(true);
+//     // stream emg
+//     myMyo.streamEMG(true);
     
-    // trigger
-    // myMyo.trigger('foobar', 'ah yis!');
+//     // trigger
+//     myMyo.trigger('foobar', 'ah yis!');
     
-    // bluetooth
-    // myMyo.requestBluetoothStrength();
-}
+//     // bluetooth
+//     myMyo.requestBluetoothStrength();
+// }
 
-function testData() {
-    // // GENERAL MYO
-    // console.log('Myo.myos: ', Myo.myos);
-    // console.log('this: ',this);
-    // console.log(Myo);
+// function testData() {
+//     // // GENERAL MYO
+//     console.log('Myo.myos: ', Myo.myos);
+//     console.log('this: ',this);
+//     console.log(Myo);
     
-    // // THIS MYO
-    // console.log('Myo.myos[0]: ', Myo.myos[0]);
+//     // // THIS MYO
+//     console.log('Myo.myos[0]: ', Myo.myos[0]);
         
-    // // METHODS
-    // console.log('Myo.methods:', Myo.methods));
-    // console.log(Myo.methods.helloWorld);
-    // Myo.methods.helloWorld();
-}
+//     // // METHODS
+//     console.log('Myo.methods:', Myo.methods);
+//     console.log(Myo.methods.helloWorld);
+//     Myo.methods.helloWorld();
+// }
 
-function initMyo() {
-    myMyo = Myo.myos[0];
-}
+// function initMyo() {
+//     myMyo = Myo.myos[0];
+// }
 
 // ONLY THIS REGISTERED ARMBAND
 function addEvents(myo) {

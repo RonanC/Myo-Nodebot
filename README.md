@@ -49,7 +49,7 @@ alt="nodebot-v1" width="480" height="360" border="10" /></a>
 - Circuit working
 - Voltage Regulator (6V, this brings the 7.4V down to 6V for the servos)
 - Capacitors (decoupling)
-- Wifi Tethered
+- Wifi Tethered ([USR-WIFI232-T](http://www.usriot.com/p/low-cost-wifi-module/))
 - Continuous Rotation Servos
 - LiPo Battery Pack (7.4V 2 cell)
 - Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
@@ -493,7 +493,7 @@ Johnny-Five is great if you only know JavaScript, are scared of electronics or y
 
 I think even with the above intentions once you learn Johnny-Five you will quickly move onto C/C++. This is not a bad thing, Johnny-Five is a great stepping stone into the more serious stuff. Kind of like MineCraft for Java programming. I think maybe for kids who know JS it would be really great.
 
-Altough I do find the Arduino starter-kit a pretty good C stepping stone!
+Although I do find the Arduino starter-kit a pretty good C stepping stone!
 
 I found that it was really quick and easy to setup Johnny-Five projects. If you want to quickly actualize your vision then it's great, but it leaves you with a feeling of "What is actually happening here?".
 

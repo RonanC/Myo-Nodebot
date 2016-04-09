@@ -454,6 +454,7 @@ You can do serial communication via USB cable or a Wifi module.
 I Added a wifi module so that I could untether my robot and give him some freedom. Now that he is unshackled he is free to roam the world just like the real Johnny-Five robot.
 
 ## Issues
+### Sotware
 I found that you rely very much so on the Johnny-Five documentation and their support. If they do not support a hardware component then you either don't use it, or you code the `C` abstraction yourself.
 
 The community is smaller, the C/C++ hardware community is HUGE, the Johnny-Five community can never compare. Due to this their is a lot less examples, Q&A, support and advice online.
@@ -466,16 +467,7 @@ I feel that if you want to program electronics then it's best to use the correct
 
 Even using C# or Java is too much of an abstraction, you can never actually run them on the device which defeats the purpose of robotics/electronics in any real serious scenario.
 
-## Conclusion
-Johnny-Five is great if you only know JavaScript, are scared of electronics or you just hate C and want to get into robotics/electronics.
-
-I think even with the above intentions once you learn Johnny-Five you will quickly move onto C/C++. This is not a bad thing, Johnny-Five is a great stepping stone into the more serious stuff. Kind of like MineCraft for Java programming. I think maybe for kids who know JS it would be really great.
-
-Altough I do find the Arduino starter-kit a pretty good C stepping stone!
-
-I found that it was really quick and easy to setup Johnny-Five projects. If you want to quickly actualize your vision then it's great, but it leaves you with a feeling of "What is actually happening here?".
-
-## Issues
+### Hardware
 One of the biggest shift changes between hardware and software is that you're dealing with physical components. 
 
 Instead of downloading a package you have to order it and wait a few days to a few weeks for it to arrive. 
@@ -493,6 +485,15 @@ When I added a switch I didn't check the circuit properly and the battery ended 
 ![issues-cable-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-cable-melt.jpg "issues-cable-melt")
 
 ![issues-switch-melt](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/issues-switch-melt.jpg "issues-switch-melt")
+
+## Conclusion
+Johnny-Five is great if you only know JavaScript, are scared of electronics or you just hate C and want to get into robotics/electronics.
+
+I think even with the above intentions once you learn Johnny-Five you will quickly move onto C/C++. This is not a bad thing, Johnny-Five is a great stepping stone into the more serious stuff. Kind of like MineCraft for Java programming. I think maybe for kids who know JS it would be really great.
+
+Altough I do find the Arduino starter-kit a pretty good C stepping stone!
+
+I found that it was really quick and easy to setup Johnny-Five projects. If you want to quickly actualize your vision then it's great, but it leaves you with a feeling of "What is actually happening here?".
 
 ## References
 Check the source code of this README.md file, all references are linked to the anchored words.

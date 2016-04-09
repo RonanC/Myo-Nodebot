@@ -105,11 +105,11 @@ For more information about my views on the advantages of JavaScript check out my
 ### My Research
 Before I started this project I wanted to get an understanding of the Myo armband, the Arduino platform, programming electronics in C and the Johnny-Five framework.
 
-![research](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/research.jpg "research")
-
 I played with the Myo armband [JavaScript bindings](https://github.com/thalmiclabs/myo.js) and got all the gestures working in a NodeJS environment.
 
 Next I bought the [Arduino Starter kit](https://www.arduino.cc/en/Main/ArduinoStarterKit) and finished all the projects therein. 
+
+![research](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/research.jpg "research")
 
 I then read through the [Make: JavaScript Robotics](http://www.amazon.com/Make-JavaScript-Robotics-Raspberry-BeagleBone/dp/1457186950) book and focused on the first project.
 

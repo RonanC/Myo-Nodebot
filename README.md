@@ -26,6 +26,15 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 
 [Official Project Brief](project-brief.md).
 
+The Cortana App (Universal Windows Platform App) and Azure Web Service projects are located in this github repository:   
+https://github.com/RonanC/nodebot-cortana
+
+The Azure Web Service is live here (only full link requests work like below):  
+http://commandrobot.azurewebsites.net
+
+The commands are sent via a link like this:  
+http://commandrobot.azurewebsites.net/api/command?cmd=dance
+
 ### Personality
 The robot is the love child of Bender and Johnny-Five.
 

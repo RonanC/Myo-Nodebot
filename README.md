@@ -27,7 +27,8 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 [Official Project Brief](project-brief.md).
 
 The Cortana App (Universal Windows Platform App) and Azure Web Service projects are located in this github repository:   
-https://github.com/RonanC/nodebot-cortana
+https://github.com/RonanC/nodebot-cortana  
+The readme in that repository contains information on the files used.
 
 The Azure Web Service is live here (only full link requests work like below):  
 http://commandrobot.azurewebsites.net

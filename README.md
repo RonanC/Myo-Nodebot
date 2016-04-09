@@ -117,6 +117,10 @@ Next I read briefly through the [Learning JavaScript Robotics](https://www.packt
 
 Now that the research was done I had a good grasp on elecronic circuits, robotics, C programming vs the JavaScript abstraction, Myo armband api and the general know how of bringing it all together.
 
+I had so many components after this project that I had to bring an extra desk into my room, Only stuff related to this project is on top of it:  
+![robot-desk](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/robot-desk.jpg "robot-desk")
+
+
 ## Architecture
 **use of cloud services, interaction with other hardware, real-world solution**
 ### Cloud Services

@@ -39,6 +39,29 @@ Hence his name is Bender-Five (obviously).
 
 ![nodebot-v2-internals](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2-internals.jpg "nodebot-v2-internals")
 
+## Version Descriptions
+**version videos/spec**
+### NodeBot Version 1:  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-WjKqEVGbKI
+" target="_blank"><img src="http://img.youtube.com/vi/-WjKqEVGbKI/0.jpg" 
+alt="nodebot-v1" width="240" height="180" border="10" /></a>
+- Circuit working
+- Voltage Regulator (6V, this brings the 7.4V down to 6V for the servos)
+- Capacitors (decoupling)
+- Wifi Tethered
+- Continuous Rotation Servos
+- LiPo Battery Pack (7.4V 2 cell)
+- Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
+
+### NodeBot Version 2:  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=VGiIr2vpM2U&nohtml5
+" target="_blank"><img src="http://img.youtube.com/vi/VGiIr2vpM2U&nohtml5/0.jpg" 
+alt="nodebot-v2" width="240" height="180" border="10" /></a>
+- Piezo (Makes beep boop noises)
+- Switch (Makes it easy to toggle on/off)
+- Case (Cardboard, keeps everything nice and tidy)
+- Personality (He has Benders face) 
+
 ### What is a Nodebot?
 Any piece of electronics controlled via JavaScript.  
 Be it an Arduino, Intel Edison, BeagleBone or Raspberry Pi.
@@ -372,29 +395,6 @@ The main program, it contains the Johnny-Five, Keyboard, Delay Events, Myo and C
 <!-- TODO -->
 #### cortanaWebService
 <!-- TODO -->
-
-## Class presentation
-**version videos/spec**
-### NodeBot Version 1:  
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=-WjKqEVGbKI
-" target="_blank"><img src="http://img.youtube.com/vi/-WjKqEVGbKI/0.jpg" 
-alt="nodebot-v1" width="240" height="180" border="10" /></a>
-- Circuit working
-- Voltage Regulator (6V, this brings the 7.4V down to 6V for the servos)
-- Capacitors (decoupling)
-- Wifi Tethered
-- Continuous Rotation Servos
-- LiPo Battery Pack (7.4V 2 cell)
-- Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
-
-### NodeBot Version 2:  
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=VGiIr2vpM2U&nohtml5
-" target="_blank"><img src="http://img.youtube.com/vi/VGiIr2vpM2U&nohtml5/0.jpg" 
-alt="nodebot-v2" width="240" height="180" border="10" /></a>
-- Piezo (Makes beep boop noises)
-- Switch (Makes it easy to toggle on/off)
-- Case (Cardboard, keeps everything nice and tidy)
-- Personality (He has Benders face) 
 
 ## Usage Instructions (OSX only)
 - Open the Myo Connect App

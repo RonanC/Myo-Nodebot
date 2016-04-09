@@ -28,23 +28,22 @@ I chose to use the JavaScript [Myo bindings](https://github.com/thalmiclabs/myo.
 
 ### Personality
 The robot is the love child of Bender and Johnny-Five.
+
 Hence his name is Bender-Five (obviously).
 ![bender-J5](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/bender-J5.png "bender-J5")
 
-### Version 1
-![nodebot-v1](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v1.jpg "nodebot-v1")
-
-### Version 2
+Bender-Five:
 ![nodebot-v2](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2.jpg "nodebot-v2")
-
-![nodebot-v2-internals](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2-internals.jpg "nodebot-v2-internals")
 
 ## Version Descriptions
 **version videos/spec**
 ### NodeBot Version 1:  
+![nodebot-v1](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v1.jpg "nodebot-v1")
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=-WjKqEVGbKI
 " target="_blank"><img src="http://img.youtube.com/vi/-WjKqEVGbKI/0.jpg" 
 alt="nodebot-v1" width="240" height="180" border="10" /></a>
+
 - Circuit working
 - Voltage Regulator (6V, this brings the 7.4V down to 6V for the servos)
 - Capacitors (decoupling)
@@ -54,9 +53,12 @@ alt="nodebot-v1" width="240" height="180" border="10" /></a>
 - Chassis/Wheel/Servo build (Bluetack, Cable Ties, Cardboard and Cleverness)
 
 ### NodeBot Version 2:  
+![nodebot-v2-internals](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/nodebot-v2-internals.jpg "nodebot-v2-internals")
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=VGiIr2vpM2U&nohtml5
 " target="_blank"><img src="http://img.youtube.com/vi/VGiIr2vpM2U&nohtml5/0.jpg" 
 alt="nodebot-v2" width="240" height="180" border="10" /></a>
+
 - Piezo (Makes beep boop noises)
 - Switch (Makes it easy to toggle on/off)
 - Case (Cardboard, keeps everything nice and tidy)

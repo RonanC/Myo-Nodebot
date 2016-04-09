@@ -94,7 +94,7 @@ cortanaSetup = function() {
         } else if (cmd == "stop") {
             command(stop, 1500);
         } else if (cmd == "dance") {
-            command(dance, 1500);
+            dance();
         } else if (cmd == "speak") {
             command(speak, 1500);
         }

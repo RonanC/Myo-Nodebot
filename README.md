@@ -118,7 +118,7 @@ Next I read briefly through the [Learning JavaScript Robotics](https://www.packt
 Now that the research was done I had a good grasp on elecronic circuits, robotics, C programming vs the JavaScript abstraction, Myo armband api and the general know how of bringing it all together.
 
 I had so many components after this project that I had to bring an extra desk into my room, Only stuff related to this project is on top of it:  
-![robot-desk](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/robot-desk.jpg "robot-desk")
+![robot-desk](https://github.com/RonanC/Nodebot-GBUI/blob/master/images/robot-desk.JPG "robot-desk")
 
 
 ## Architecture
@@ -431,8 +431,8 @@ Key | Command
  --- | --- 
 Arrow keys | Movement
 Space bar | Stop
-B | Boogie
-V | Voice
+D | Dance
+S | Speak
 Q | Quit
 
 #### Myo Controls:
@@ -447,11 +447,16 @@ Double Tap | Beep Boop
 #### Cortana Controls:
 Voice | Command
  --- | --- 
-Prefix | Robot Go: 
-Forward | Forward
-Left | Turn Left
-Right | Turn Right
-Talk | Beep Boop
+Prefix | Robot: 
+
+**Commands:**
+- Forward
+- Backward
+- Left
+- Right
+- Speak
+- Dance
+- Stop
 
 ## Progress
 I spent a lot of time researching what language/framework to use for this project. Coming from a software background I applied the usual idea of finding the best framework. I looked into Java, C# and JavaScript frameworks. I code at these layers of abstractions quite a lot so I felt it would be interesting to try to not use C or C++.
